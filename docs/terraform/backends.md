@@ -1,28 +1,28 @@
 ---
 sidebar_position: 4
-title: Backends & State
+title: Backends
 ---
 
-# Backends & State
+# Backends
 
 Terraform state is the source of truth for your infrastructure. Treat it with the same care as a production database.
 
-## Remote State is Mandatory
+## Remote State
 
-Local state (`terraform.tfstate` on disk) is **never** acceptable outside of throwaway experiments. Every environment must use a remote backend with:
+Local state (`terraform.tfstate` on disk) is **never** acceptable outside of throwaway experiments. Every environment must use a remote backend. A remote backend stores state outside the local filesystem, on a managed service that provides locking, versioning, and access control.
+
+Every environment must use a remote backend with:
 
 - **Encryption at rest**: state files contain sensitive resource attributes.
 - **State locking**: prevents concurrent `apply` runs from corrupting state.
 - **Versioning**: allows rollback to a known-good state.
 - **Restricted access**: least-privilege IAM/RBAC on the state store.
 
-## Recommended Backends
+## Examples
 
-All backends listed below are remote. A remote backend stores state outside the local filesystem, on a managed service that provides locking, versioning, and access control. Choose the backend that matches your cloud provider or CI/CD platform.
+Choose the backend that matches your cloud provider or CI/CD platform.
 
 ### AWS S3 + DynamoDB
-
-The standard remote backend for AWS workloads:
 
 ```hcl
 # versions.tf
@@ -71,8 +71,6 @@ terraform {
 
 ### HCP Terraform (Terraform Cloud)
 
-For teams already on HCP Terraform, use the `remote` or `cloud` backend:
-
 ```hcl
 terraform {
   cloud {
@@ -85,7 +83,7 @@ terraform {
 }
 ```
 
-## State File Key Convention
+## State File Naming Convention
 
 State file keys follow the same structure as the directory layout:
 
@@ -107,29 +105,6 @@ Never share a single state file between multiple components or environments.
 
 Each combination of `(project, component, environment)` must have its own state file. This limits the blast radius of any single `apply` and allows independent promotion of changes across environments.
 
-## Accessing Remote State from Other Modules
-
-Use `terraform_remote_state` to share outputs between root modules. Prefer this over duplicating resource definitions.
-
-```hcl
-data "terraform_remote_state" "networking" {
-  backend = "s3"
-
-  config = {
-    bucket = "nuagir-terraform-state-prod"
-    key    = "platform/networking/prod/terraform.tfstate"
-    region = "us-east-1"
-  }
-}
-
-resource "aws_instance" "app" {
-  subnet_id = data.terraform_remote_state.networking.outputs.private_subnet_ids[0]
-  # ...
-}
-```
-
-> Prefer data sources (e.g. `aws_vpc`, `aws_subnet`) over `terraform_remote_state` when the consuming module has no ownership relationship with the producing module: it decouples the two root modules.
-
 ## State Manipulation
 
 Avoid direct state manipulation. When it is unavoidable (e.g. resource moves, import):
@@ -148,7 +123,7 @@ Avoid direct state manipulation. When it is unavoidable (e.g. resource moves, im
 
 Use separate IAM roles or service principals for CI/CD vs. developer access; never share credentials.
 
-## Sensitive Values in State
+## Sensitive Values
 
 Terraform stores sensitive resource attributes in the state file in plain text (even when marked `sensitive = true` in configuration). This makes encryption at rest and strict access control non-negotiable.
 
