@@ -11,16 +11,18 @@ Terraform state is the source of truth for your infrastructure. Treat it with th
 
 Local state (`terraform.tfstate` on disk) is **never** acceptable outside of throwaway experiments. Every environment must use a remote backend with:
 
-- **Encryption at rest** — state files contain sensitive resource attributes.
-- **State locking** — prevents concurrent `apply` runs from corrupting state.
-- **Versioning** — allows rollback to a known-good state.
-- **Restricted access** — least-privilege IAM/RBAC on the state store.
+- **Encryption at rest**: state files contain sensitive resource attributes.
+- **State locking**: prevents concurrent `apply` runs from corrupting state.
+- **Versioning**: allows rollback to a known-good state.
+- **Restricted access**: least-privilege IAM/RBAC on the state store.
 
 ## Recommended Backends
 
+All backends listed below are remote. A remote backend stores state outside the local filesystem, on a managed service that provides locking, versioning, and access control. Choose the backend that matches your cloud provider or CI/CD platform.
+
 ### AWS S3 + DynamoDB
 
-The standard backend for AWS workloads:
+The standard remote backend for AWS workloads:
 
 ```hcl
 # versions.tf
@@ -126,7 +128,7 @@ resource "aws_instance" "app" {
 }
 ```
 
-> Prefer data sources (e.g. `aws_vpc`, `aws_subnet`) over `terraform_remote_state` when the consuming module has no ownership relationship with the producing module — it decouples the two root modules.
+> Prefer data sources (e.g. `aws_vpc`, `aws_subnet`) over `terraform_remote_state` when the consuming module has no ownership relationship with the producing module: it decouples the two root modules.
 
 ## State Manipulation
 
