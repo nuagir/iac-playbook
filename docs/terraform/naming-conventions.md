@@ -12,7 +12,7 @@ Consistent naming reduces cognitive load and makes resources discoverable across
 - Use **snake_case** for all Terraform identifiers (resources, variables, outputs, locals, modules).
 - Use **kebab-case** for cloud resource names (the `name` argument passed to the provider).
 - Never abbreviate when the full word is reasonably short. Prefer `database` over `db`, `network` over `net`.
-- Avoid redundant prefixes — do not repeat the resource type in the identifier (e.g. `resource "aws_s3_bucket" "assets"` not `resource "aws_s3_bucket" "s3_assets_bucket"`).
+- Avoid redundant prefixes. Do not repeat the resource type in the identifier (e.g. `resource "aws_s3_bucket" "assets"` not `resource "aws_s3_bucket" "s3_assets_bucket"`).
 
 ## Terraform Identifiers
 

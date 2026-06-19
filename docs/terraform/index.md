@@ -18,7 +18,7 @@ This section documents our opinionated approach to writing, organizing, and oper
 
 ## Guiding Principles
 
-- **Consistency over preference** — follow the patterns in this playbook even when you disagree; raise a discussion to change the standard instead of diverging silently.
-- **Least privilege by default** — every IAM permission, policy, and role should grant only what is needed.
-- **State is sacred** — treat the Terraform state as production data; protect it with encryption, access controls, and locking.
-- **Code review everything** — no `terraform apply` runs directly from a developer machine against production; all changes go through CI/CD.
+- **Consistency over preference:** follow the patterns in this playbook even when you disagree; raise a discussion to change the standard instead of diverging silently.
+- **Least privilege by default:** every IAM permission, policy, and role should grant only what is needed.
+- **State is sacred:** treat the Terraform state as production data; protect it with encryption, access controls, and locking.
+- **Code review everything:** no `terraform apply` runs directly from a developer machine against production; all changes go through CI/CD.

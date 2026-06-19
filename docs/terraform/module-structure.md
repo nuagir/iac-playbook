@@ -15,7 +15,7 @@ Create a module when:
 - A group of resources represents a coherent infrastructure concept (e.g. "an ECS service with its IAM role and security group").
 - You need to enforce organizational standards for a resource type.
 
-Do **not** create a module just to wrap a single resource — the overhead is not worth it. A `locals` block and good variable names inside a root module are sufficient.
+Do **not** create a module just to wrap a single resource. The overhead is not worth it. A `locals` block and good variable names inside a root module are sufficient.
 
 ## Directory Layout
 
@@ -149,9 +149,9 @@ module "api_service" {
 
 | Name | Type | Default | Description |
 |---|---|---|---|
-| `name` | `string` | — | Name prefix for all resources |
-| `cluster_arn` | `string` | — | ARN of the target ECS cluster |
-| `container_image` | `string` | — | Docker image URI |
+| `name` | `string` | required | Name prefix for all resources |
+| `cluster_arn` | `string` | required | ARN of the target ECS cluster |
+| `container_image` | `string` | required | Docker image URI |
 | `desired_count` | `number` | `2` | Number of running tasks |
 
 ## Outputs
