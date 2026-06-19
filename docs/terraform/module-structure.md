@@ -112,7 +112,7 @@ Tag modules with semantic versions and reference them by tag in root modules:
 ```hcl
 # Consuming root module
 module "api_service" {
-  source = "git::https://github.com/nuagir/infrastructure.git//modules/ecs_service?ref=v1.4.0"
+  source = "git::https://github.com/my-org/infrastructure.git//modules/ecs_service?ref=v1.4.0"
 
   name            = "payments-api"
   cluster_arn     = data.terraform_remote_state.platform.outputs.ecs_cluster_arn

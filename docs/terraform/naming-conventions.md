@@ -55,7 +55,7 @@ Cloud resource names follow the pattern:
 
 | Segment | Description | Example |
 |---|---|---|
-| `organization` | Short org or team identifier | `nuagir` |
+| `organization` | Short org or team identifier | `acme` |
 | `project` | Project or service name | `payments` |
 | `environment` | Deployment tier | `prod`, `staging`, `dev` |
 | `resource-descriptor` | What the resource does | `api-lb`, `rds-primary` |
@@ -63,9 +63,9 @@ Cloud resource names follow the pattern:
 **Examples:**
 
 ```
-nuagir-payments-prod-api-lb
-nuagir-payments-staging-rds-primary
-nuagir-platform-dev-cache
+acme-payments-prod-api-lb
+acme-payments-staging-rds-primary
+acme-platform-dev-cache
 ```
 
 > For resources with strict name-length limits (e.g. AWS S3 buckets ≤ 63 chars, Azure storage accounts ≤ 24 chars), omit the organization prefix and use the shortest unambiguous descriptor.
@@ -103,7 +103,7 @@ locals {
     Project     = var.project
     Environment = var.environment
     ManagedBy   = "Terraform"
-    Repository  = "github.com/nuagir/infrastructure"
+    Repository  = "github.com/my-org/infrastructure"
   }
 }
 

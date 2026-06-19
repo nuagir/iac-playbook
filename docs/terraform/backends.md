@@ -28,11 +28,11 @@ Choose the backend that matches your cloud provider or CI/CD platform.
 # versions.tf
 terraform {
   backend "s3" {
-    bucket         = "nuagir-terraform-state-prod"
+    bucket         = "my-org-terraform-state-prod"
     key            = "payments/api/terraform.tfstate"
     region         = "us-east-1"
     encrypt        = true
-    dynamodb_table = "nuagir-terraform-locks"
+    dynamodb_table = "my-org-terraform-locks"
     kms_key_id     = "arn:aws:kms:us-east-1:123456789012:key/mrk-abc123"
   }
 }
@@ -60,8 +60,8 @@ terraform {
 ```hcl
 terraform {
   backend "azurerm" {
-    resource_group_name  = "nuagir-terraform-state-rg"
-    storage_account_name = "nuagirterraformstate"
+    resource_group_name  = "my-org-terraform-state-rg"
+    storage_account_name = "myorgterraformstate"
     container_name       = "tfstate"
     key                  = "payments/api/terraform.tfstate"
     use_oidc             = true
@@ -74,7 +74,7 @@ terraform {
 ```hcl
 terraform {
   cloud {
-    organization = "nuagir"
+    organization = "my-org"
 
     workspaces {
       name = "payments-api-prod"
