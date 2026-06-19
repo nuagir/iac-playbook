@@ -62,7 +62,7 @@ const config: Config = {
       },
       items: [
         {
-          href: "https://github.com/facebook/docusaurus",
+          href: "https://github.com/nuagir/iac-playbook",
           label: "GitHub",
           position: "right",
         },
@@ -81,15 +81,6 @@ const config: Config = {
           ],
         },
         {
-          title: "Community",
-          items: [
-            {
-              label: "Discord",
-              href: "https://discordapp.com/invite/docusaurus",
-            },
-          ],
-        },
-        {
           title: "More",
           items: [
             {
@@ -99,7 +90,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Nuagir inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Nuagir inc.`,
     },
     prism: {
       theme: prismThemes.github,
