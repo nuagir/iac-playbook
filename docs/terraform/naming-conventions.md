@@ -38,9 +38,9 @@ output "private_subnet_ids" { ... }
 locals {
   name_prefix = "${var.project}-${var.environment}"
   common_tags = {
-    Project     = var.project
-    Environment = var.environment
-    ManagedBy   = "Terraform"
+    project     = var.project
+    environment = var.environment
+    managed_by  = "terraform"
   }
 }
 ```
@@ -50,22 +50,22 @@ locals {
 Cloud resource names follow the pattern:
 
 ```
-<organization>-<project>-<environment>-<resource-descriptor>
+<organization>-<project>-<resource-descriptor>-<environment>
 ```
 
 | Segment | Description | Example |
 |---|---|---|
 | `organization` | Short org or team identifier | `acme` |
 | `project` | Project or service name | `payments` |
-| `environment` | Deployment tier | `prod`, `staging`, `dev` |
 | `resource-descriptor` | What the resource does | `api-lb`, `rds-primary` |
+| `environment` | Deployment tier | `prod`, `staging`, `dev` |
 
 **Examples:**
 
 ```
-acme-payments-prod-api-lb
-acme-payments-staging-rds-primary
-acme-platform-dev-cache
+acme-payments-api-lb-prod
+acme-payments-rds-primary-staging
+acme-platform-cache-dev
 ```
 
 > For resources with strict name-length limits (e.g. AWS S3 buckets ≤ 63 chars, Azure storage accounts ≤ 24 chars), omit the organization prefix and use the shortest unambiguous descriptor.
@@ -100,10 +100,10 @@ All resources must include a common set of tags applied via `locals.common_tags`
 ```hcl
 locals {
   common_tags = {
-    Project     = var.project
-    Environment = var.environment
-    ManagedBy   = "Terraform"
-    Repository  = "github.com/my-org/infrastructure"
+    project     = var.project
+    environment = var.environment
+    managed_by  = "terraform"
+    repository  = "github.com/my-org/infrastructure"
   }
 }
 
@@ -111,7 +111,7 @@ resource "aws_s3_bucket" "assets" {
   bucket = "${local.name_prefix}-assets"
 
   tags = merge(local.common_tags, {
-    Purpose = "static-assets"
+    purpose = "static-assets"
   })
 }
 ```
@@ -120,7 +120,7 @@ Required tags on all resources:
 
 | Tag | Description |
 |---|---|
-| `Project` | The project or service this resource belongs to |
-| `Environment` | The deployment environment (`dev`, `staging`, `prod`) |
-| `ManagedBy` | Always `Terraform` |
-| `Repository` | The source repository URL |
+| `project` | The project or service this resource belongs to |
+| `environment` | The deployment environment (`dev`, `staging`, `prod`) |
+| `managed_by` | Always `terraform` |
+| `repository` | The source repository URL |

@@ -13,27 +13,25 @@ Local state (`terraform.tfstate` on disk) is **never** acceptable outside of thr
 
 Every environment must use a remote backend with:
 
-- **Encryption at rest**: state files contain sensitive resource attributes.
-- **State locking**: prevents concurrent `apply` runs from corrupting state.
-- **Versioning**: allows rollback to a known-good state.
-- **Restricted access**: least-privilege IAM/RBAC on the state store.
+- **Encryption at rest**: State files contain sensitive resource attributes.
+- **State locking**: Prevents concurrent `apply` runs from corrupting state.
+- **Versioning**: Allows rollback to a known-good state.
+- **Restricted access**: Least-privilege IAM/RBAC on the state store.
 
 ## Examples
 
 Choose the backend that matches your cloud provider or CI/CD platform.
 
-### AWS S3 + DynamoDB
+### AWS S3
 
 ```hcl
 # versions.tf
 terraform {
   backend "s3" {
-    bucket         = "my-org-terraform-state-prod"
-    key            = "payments/api/terraform.tfstate"
-    region         = "us-east-1"
-    encrypt        = true
-    dynamodb_table = "my-org-terraform-locks"
-    kms_key_id     = "arn:aws:kms:us-east-1:123456789012:key/mrk-abc123"
+    bucket  = "my-org-terraform-state-prod"
+    key     = "payments/api/terraform.tfstate"
+    region  = "us-east-1"
+    encrypt = true
   }
 }
 ```
@@ -47,14 +45,6 @@ terraform {
 | Block public access | All four settings enabled |
 | Bucket policy | Deny `s3:DeleteObject` on state keys |
 
-**DynamoDB table requirements:**
-
-| Setting | Value |
-|---|---|
-| Partition key | `LockID` (String) |
-| Billing mode | PAY_PER_REQUEST |
-| Point-in-time recovery | Enabled |
-
 ### Azure Blob Storage
 
 ```hcl
@@ -65,20 +55,6 @@ terraform {
     container_name       = "tfstate"
     key                  = "payments/api/terraform.tfstate"
     use_oidc             = true
-  }
-}
-```
-
-### HCP Terraform (Terraform Cloud)
-
-```hcl
-terraform {
-  cloud {
-    organization = "my-org"
-
-    workspaces {
-      name = "payments-api-prod"
-    }
   }
 }
 ```
@@ -110,18 +86,18 @@ Each combination of `(project, component, environment)` must have its own state 
 Avoid direct state manipulation. When it is unavoidable (e.g. resource moves, import):
 
 - Always take a manual backup (`terraform state pull > backup.tfstate`) before running `terraform state mv`, `rm`, or `import`.
-- Run in a branch, plan after the manipulation, and get a peer review before applying.
+- Use a `moved.tf` file to track resource moves with a reference ID in a comment for traceability.
 - Document the reason in the commit message.
 
 ## Access Control
 
-| Role | Permissions |
-|---|---|
-| CI/CD pipeline | Read + write state, acquire/release locks |
-| Developers | Read state only (for `terraform plan` locally) |
-| Administrators | Full access (break-glass only) |
+| Role | Permissions | Purpose |
+|---|---|---|
+| CI/CD pipeline | Read + write state, acquire/release locks | Runs `plan` and `apply` on behalf of merged PRs |
+| Developers | Read state only | Allows local `terraform plan` without the ability to modify state |
+| Administrators | Full access | Break-glass emergency access only |
 
-Use separate IAM roles or service principals for CI/CD vs. developer access; never share credentials.
+Use separate IAM roles or service principals for CI/CD vs. developer access, never share credentials.
 
 ## Sensitive Values
 

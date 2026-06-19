@@ -16,6 +16,7 @@ Run the following before every commit:
 ```bash
 terraform fmt -recursive
 terraform validate
+tflint
 ```
 
 Automate both in a pre-commit hook and in CI.

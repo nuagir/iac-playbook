@@ -5,7 +5,7 @@ title: Secrets Management
 
 # Secrets Management
 
-- Never commit secrets, passwords, or API keys to version control. This includes `*.tfvars` files.
+- Never commit secrets, passwords, or API keys to version control.
 - Use a secrets manager (AWS Secrets Manager, HashiCorp Vault, Azure Key Vault) and reference secrets via data sources.
 - Use environment variables (`TF_VAR_*`) to inject sensitive values in CI/CD.
 

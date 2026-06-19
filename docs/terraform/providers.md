@@ -12,7 +12,7 @@ title: Providers
 ```hcl
 # versions.tf
 terraform {
-  required_version = ">= 1.6.0"
+  required_version = ">= 1.15.1"
 
   required_providers {
     aws = {

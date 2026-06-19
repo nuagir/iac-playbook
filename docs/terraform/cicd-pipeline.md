@@ -15,6 +15,7 @@ Pull Request opened
        ▼
   terraform fmt --check
   terraform validate
+  tflint
   terraform plan -out=tfplan     ← plan posted as PR comment
        │
        ▼
@@ -26,15 +27,13 @@ Pull Request opened
 
 ## GitHub Actions: Core Workflow
 
-The following workflow runs `plan` on every pull request and `apply` on merge to `main`. It uses OIDC authentication (no long-lived secrets stored in GitHub).
+The following workflow runs `plan` on every pull request. A merged PR to `main` is required before `apply` runs. It uses OIDC authentication (no long-lived secrets stored in GitHub).
 
 ```yaml
 # .github/workflows/terraform.yml
 name: Terraform
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
@@ -44,7 +43,7 @@ permissions:
   pull-requests: write
 
 env:
-  TF_VERSION: "1.9.0"
+  TF_VERSION: "1.15.3"
   WORKING_DIR: environments/prod
 
 jobs:
@@ -77,6 +76,12 @@ jobs:
       - name: Terraform Validate
         run: terraform validate
 
+      - name: TFLint
+        uses: terraform-linters/setup-tflint@v4
+        with:
+          tflint_version: latest
+      - run: tflint --init && tflint
+
       - name: Terraform Plan
         id: plan
         run: terraform plan -out=tfplan -no-color 2>&1 | tee plan.txt
@@ -107,7 +112,7 @@ jobs:
     name: Apply
     runs-on: ubuntu-latest
     needs: plan
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
     defaults:
       run:
         working-directory: ${{ env.WORKING_DIR }}
@@ -138,7 +143,7 @@ jobs:
         run: terraform apply -auto-approve tfplan
 ```
 
-## Multi-Environment Pipeline
+## CI/CD Pipeline: Multi-Environment
 
 For multiple environments (`dev`, `staging`, `prod`), use a promotion model: changes flow through each environment in sequence with a mandatory approval gate before reaching production.
 
@@ -165,7 +170,7 @@ Each environment maps to its own workflow job with a separate working directory 
 name: Terraform Multi-Environment
 
 on:
-  push:
+  pull_request:
     branches: [main]
 
 permissions:
@@ -183,7 +188,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: "1.9.0"
+          terraform_version: "1.15.3"
       - name: Configure credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -205,7 +210,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: "1.9.0"
+          terraform_version: "1.15.3"
       - name: Configure credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -227,7 +232,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: "1.9.0"
+          terraform_version: "1.15.3"
       - name: Configure credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
