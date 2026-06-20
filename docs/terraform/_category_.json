@@ -3,6 +3,6 @@
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "Opinionated best practices, naming conventions, and structural guidelines for Terraform at Nuagir."
+    "description": "Opinionated best practices, naming conventions, and structural guidelines for Terraform."
   }
 }

@@ -14,15 +14,10 @@ const config: Config = {
   url: "https://iacplaybook.com",
   baseUrl: "/",
 
-  organizationName: "facebook",
-  projectName: "docusaurus",
+  organizationName: "nuagir",
+  projectName: "iac-playbook",
 
   onBrokenLinks: "throw",
-
-  i18n: {
-    defaultLocale: "en",
-    locales: ["en"],
-  },
 
   presets: [
     [
@@ -47,7 +42,7 @@ const config: Config = {
     navbar: {
       title: "IaC Playbook",
       logo: {
-        alt: "My Site Logo",
+        alt: "IaC Playbook Logo",
         src: "img/logo.svg",
       },
       items: [
