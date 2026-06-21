@@ -27,7 +27,6 @@ const config: Config = {
           sidebarPath: "./sidebars.ts",
           routeBasePath: "/",
           editUrl: "https://github.com/nuagir/iac-playbook/tree/main/",
-          sidebarCollapsible: false,
         },
         theme: {
           customCss: "./src/css/custom.css",
