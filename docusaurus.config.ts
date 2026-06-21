@@ -5,33 +5,19 @@ import type * as Preset from "@docusaurus/preset-classic";
 const config: Config = {
   title: "IaC Playbook",
   tagline: "Opiniated Infrastructure-as-Code playbook.",
-  favicon: "img/favicon.ico",
+  favicon: "img/favicon.svg",
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    v4: true,
   },
 
-  // Set the production url of your site here
   url: "https://iacplaybook.com",
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: "facebook", // Usually your GitHub org/user name.
-  projectName: "docusaurus", // Usually your repo name.
+  organizationName: "nuagir",
+  projectName: "iac-playbook",
 
   onBrokenLinks: "throw",
-
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
-  i18n: {
-    defaultLocale: "en",
-    locales: ["en"],
-  },
 
   presets: [
     [
@@ -39,10 +25,8 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          routeBasePath: "/",
+          editUrl: "https://github.com/nuagir/iac-playbook/tree/main/",
         },
         theme: {
           customCss: "./src/css/custom.css",
@@ -52,7 +36,6 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
     colorMode: {
       respectPrefersColorScheme: true,
@@ -60,18 +43,12 @@ const config: Config = {
     navbar: {
       title: "IaC Playbook",
       logo: {
-        alt: "My Site Logo",
+        alt: "IaC Playbook Logo",
         src: "img/logo.svg",
       },
       items: [
         {
-          type: "docSidebar",
-          sidebarId: "tutorialSidebar",
-          position: "left",
-          label: "Tutorial",
-        },
-        {
-          href: "https://github.com/facebook/docusaurus",
+          href: "https://github.com/nuagir/iac-playbook",
           label: "GitHub",
           position: "right",
         },
@@ -84,17 +61,8 @@ const config: Config = {
           title: "Docs",
           items: [
             {
-              label: "Tutorial",
-              to: "/docs/intro",
-            },
-          ],
-        },
-        {
-          title: "Community",
-          items: [
-            {
-              label: "Discord",
-              href: "https://discordapp.com/invite/docusaurus",
+              label: "Terraform",
+              to: "/terraform",
             },
           ],
         },
@@ -108,7 +76,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Nuagir inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Nuagir`,
     },
     prism: {
       theme: prismThemes.github,
