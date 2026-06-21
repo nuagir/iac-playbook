@@ -143,7 +143,7 @@ jobs:
         run: terraform apply -auto-approve tfplan
 ```
 
-## CI/CD Pipeline: Multi-Environment
+## Multi-Environment
 
 For multiple environments (`dev`, `staging`, `prod`), use a promotion model: changes flow through each environment in sequence with a mandatory approval gate before reaching production.
 

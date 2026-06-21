@@ -13,10 +13,10 @@ Local state (`terraform.tfstate` on disk) is **never** acceptable outside of thr
 
 Every environment must use a remote backend with:
 
-- **Encryption at rest**: State files contain sensitive resource attributes.
-- **State locking**: Prevents concurrent `apply` runs from corrupting state.
+- **Encryption at Rest**: State files contain sensitive resource attributes.
+- **State Locking**: Prevents concurrent `apply` runs from corrupting state.
 - **Versioning**: Allows rollback to a known-good state.
-- **Restricted access**: Least-privilege IAM/RBAC on the state store.
+- **Restricted Access**: Least-privilege IAM/RBAC on the state store.
 
 ## Examples
 
