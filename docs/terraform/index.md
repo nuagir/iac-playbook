@@ -19,8 +19,7 @@ This section documents our opinionated approach to writing, organizing, and oper
 | [Providers](./providers) | Provider version pinning and configuration |
 | [Modules](./modules) | Module design principles |
 | [Secrets Management](./secrets-management) | Keeping secrets out of version control |
-| [Workflow](./workflow) | Local vs. CI/CD apply rules, formatting, and drift detection |
-| [CI/CD Pipeline](./cicd-pipeline) | GitHub Actions workflows and multi-environment pipeline setup |
+| [CI/CD Pipeline](./cicd-pipeline) | Workflow rules, validations, drift detection, and GitHub Actions pipeline setup |
 | [Lifecycle & Version Management](./lifecycle) | Destroy protection and Terraform version pinning |
 
 ## Guiding Principles
