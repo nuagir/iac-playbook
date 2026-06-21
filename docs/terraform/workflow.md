@@ -5,11 +5,9 @@ title: Workflow
 
 # Workflow
 
-## Never Apply Locally Against Production
-
 All production changes must go through the CI/CD pipeline. Developer machines may run `apply` only against personal sandbox environments.
 
-## Formatting & Validation
+## Validations
 
 Run the following before every commit:
 

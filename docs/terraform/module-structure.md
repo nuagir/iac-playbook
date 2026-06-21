@@ -31,7 +31,7 @@ modules/
     └── README.md        # Usage example, inputs/outputs table
 ```
 
-## variables.tf Template
+## Variables
 
 Every variable needs a type, description, and (where appropriate) validation:
 
@@ -69,7 +69,7 @@ variable "tags" {
 }
 ```
 
-## outputs.tf Template
+## Outputs
 
 Export everything a caller might need; avoid forcing callers to reconstruct IDs themselves:
 
@@ -90,7 +90,7 @@ output "security_group_id" {
 }
 ```
 
-## versions.tf Template
+## Providers
 
 ```hcl
 terraform {
@@ -124,44 +124,32 @@ module "api_service" {
 
 Use `ref=` to pin to a tag, never to a branch name in production.
 
-## README.md Template
+## Documentation
 
-Every module must ship a `README.md` with at minimum:
+Use [terraform-docs](https://terraform-docs.io/) to auto-generate the `README.md` for every module. Never write the inputs/outputs table by hand.
 
-````markdown
-# Module: ecs_service
-
-Deploys an ECS Fargate service with a task definition, IAM execution role, and security group.
-
-## Usage
-
-```hcl
-module "api_service" {
-  source = "../../modules/ecs_service"
-
-  name            = "payments-api"
-  cluster_arn     = var.ecs_cluster_arn
-  container_image = "123456789.dkr.ecr.us-east-1.amazonaws.com/payments-api:1.2.3"
-}
+```bash
+terraform-docs markdown table --output-file README.md --output-mode inject .
 ```
 
-## Inputs
+Add a `.terraform-docs.yml` at the module root to control output:
 
-| Name | Type | Default | Description |
-|---|---|---|---|
-| `name` | `string` | required | Name prefix for all resources |
-| `cluster_arn` | `string` | required | ARN of the target ECS cluster |
-| `container_image` | `string` | required | Docker image URI |
-| `desired_count` | `number` | `2` | Number of running tasks |
+```yaml
+formatter: markdown table
 
-## Outputs
+output:
+  file: README.md
+  mode: inject
 
-| Name | Description |
-|---|---|
-| `service_arn` | ARN of the ECS service |
-| `task_definition_arn` | ARN of the deployed task definition |
-| `security_group_id` | ID of the tasks security group |
-````
+sections:
+  show:
+    - inputs
+    - outputs
+    - requirements
+    - providers
+```
+
+Run terraform-docs in CI on every pull request that modifies a module to keep documentation in sync. The `inject` mode writes between `<!-- BEGIN_TF_DOCS -->` / `<!-- END_TF_DOCS -->` markers, so a hand-written usage example above the markers is preserved.
 
 ## Testing Modules
 

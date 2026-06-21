@@ -93,7 +93,7 @@ module "rds_cluster" {
 }
 ```
 
-## Tags / Labels
+## Tags
 
 All resources must include a common set of tags applied via `locals.common_tags`. Additional resource-specific tags are merged on top.
 

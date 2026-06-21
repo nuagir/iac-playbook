@@ -25,7 +25,7 @@ Pull Request opened
   terraform apply tfplan          ← uses the saved plan artifact
 ```
 
-## GitHub Actions: Core Workflow
+## GitHub Actions
 
 The following workflow runs `plan` on every pull request. A merged PR to `main` is required before `apply` runs. It uses OIDC authentication (no long-lived secrets stored in GitHub).
 
@@ -256,7 +256,9 @@ jobs:
 
 Never store cloud credentials as long-lived GitHub secrets. Use OpenID Connect (OIDC) so GitHub Actions can assume a scoped IAM role directly.
 
-**AWS example, IAM role trust policy:**
+### AWS
+
+IAM role trust policy:
 
 ```json
 {
@@ -277,3 +279,30 @@ Never store cloud credentials as long-lived GitHub secrets. Use OpenID Connect (
 ```
 
 Each environment (`dev`, `staging`, `prod`) must have its own IAM role with the minimum permissions needed to apply that environment's Terraform code.
+
+### Azure
+
+Create an App Registration in Entra ID and add a federated credential instead of storing a client secret.
+
+**Federated credential settings** (set in App Registration > Certificates & secrets > Federated credentials):
+
+| Field | Value |
+|---|---|
+| Issuer | `https://token.actions.githubusercontent.com` |
+| Subject identifier | `repo:my-org/infrastructure:environment:prod` |
+| Audience | `api://AzureADTokenExchange` |
+
+Use `environment:*` to scope to a specific GitHub Environment, or `ref:refs/heads/main` to scope to a branch. Never use `repo:my-org/infrastructure:*` (too broad) for production roles.
+
+In the workflow, authenticate with the federated credential:
+
+```yaml
+- name: Configure Azure credentials (OIDC)
+  uses: azure/login@v2
+  with:
+    client-id: ${{ secrets.AZURE_CLIENT_ID }}
+    tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+    subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+```
+
+Assign the App Registration's service principal the minimum Azure RBAC role required (e.g. `Contributor` scoped to the target resource group, not the entire subscription). Each environment must use a separate App Registration.

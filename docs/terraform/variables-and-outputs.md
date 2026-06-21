@@ -5,11 +5,21 @@ title: Variables & Outputs
 
 # Variables & Outputs
 
-## Variables & Inputs
+## Variables
 
 - Always declare a `type` and `description` for every variable.
-- Use `validation` blocks for constrained inputs.
 - Do not use `default = null` as a lazy way to make a variable optional. Model optionality explicitly.
+
+```hcl
+variable "environment" {
+  type        = string
+  description = "Deployment environment. One of: dev, staging, prod."
+}
+```
+
+## Inputs
+
+Use `validation` blocks to enforce constraints at plan time rather than letting invalid values propagate to the provider:
 
 ```hcl
 variable "environment" {
@@ -23,7 +33,7 @@ variable "environment" {
 }
 ```
 
-- Sensitive values must be declared with `sensitive = true`.
+Sensitive values must be declared with `sensitive = true` to prevent them from appearing in plan output and logs:
 
 ```hcl
 variable "db_password" {
