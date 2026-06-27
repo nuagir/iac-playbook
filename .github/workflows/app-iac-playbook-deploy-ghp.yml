@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - NUA-1417-fix-deploy-pipeline # FIXME: Temporary do not merge
 
 permissions:
   contents: read
