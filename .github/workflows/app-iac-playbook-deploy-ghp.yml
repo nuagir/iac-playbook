@@ -37,7 +37,7 @@ jobs:
         run: npm run build
 
       - name: Setup GitHub Pages
-        uses: actions/configure-pages@983c5d7b0339978f4f5c88462e67bbd1c7fab19a # v5.0.0
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
