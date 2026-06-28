@@ -16,6 +16,7 @@ This section documents our opinionated approach to writing, organizing, and oper
 | [Module Design](./module-design) | Guidelines for writing and consuming Ansible modules |
 | [State Management](./state-management) | Idempotency principles and state tracking strategies |
 | [Variables & Outputs](./variables-and-outputs) | Variable precedence, typing, and output conventions |
+| [Provider Configuration](./provider-configuration) | SSH, WinRM, and cloud provider authentication setup |
 | [Anti-Patterns](./anti-patterns) | Common mistakes and how to avoid them |
 | [CI/CD Pipeline](./cicd-pipeline) | Workflow rules, linting, testing, and pipeline setup |
 | [Security & Compliance](./security-and-compliance) | Secrets handling, privilege escalation, and hardening |
