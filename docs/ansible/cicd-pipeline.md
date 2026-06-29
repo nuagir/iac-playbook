@@ -95,7 +95,7 @@ jobs:
           ANSIBLE_VAULT_PASSWORD: ${{ secrets.ANSIBLE_VAULT_PASSWORD }}
 ```
 
-## `requirements.txt`
+## Dependencies
 
 Pin all Python dependencies:
 

@@ -26,7 +26,14 @@ Use **role defaults** for values that operators are expected to override. Use **
 
 ## Defining Defaults
 
-Every role must declare defaults for all variables it uses. This documents the interface and prevents undefined variable errors:
+Every role must declare defaults for all variables it uses. This documents the role's interface and prevents undefined variable errors at runtime.
+
+Follow these guidelines when writing defaults:
+
+- **Declare every variable the role uses.** If a task references a variable, it must have a default. Undeclared variables cause hard-to-debug failures when the role is run in a new context.
+- **Do not put everything in defaults.** Defaults are for values operators are expected to customize. Internal constants that must not be overridden belong in `vars/main.yml`, where they carry higher precedence and signal that the value is not a public interface.
+- **Use safe, functional values.** A default should allow the role to run in a basic environment without modification. Avoid defaults that are environment-specific (e.g. a production hostname) or that would cause harm if applied blindly.
+- **Document non-obvious defaults.** Add an inline comment when the chosen value requires context, such as a specific port required by a firewall rule or a timeout tuned for a particular workload.
 
 ```yaml
 # roles/postgresql_server/defaults/main.yml
@@ -77,12 +84,12 @@ Ansible does not have native outputs like Terraform. Share data between plays us
 Use explicit YAML types to avoid string-vs-boolean ambiguities:
 
 ```yaml
-# Explicit — unambiguous
+# Explicit, unambiguous
 postgresql_server_ssl_enabled: true
 postgresql_server_port: 5432
 postgresql_server_version: "15"   # String, not integer
 
-# Risky — YAML may coerce "yes"/"no" depending on parser version
+# Risky: YAML may coerce "yes"/"no" depending on parser version
 postgresql_server_ssl_enabled: yes
 ```
 

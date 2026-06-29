@@ -23,7 +23,7 @@ This section documents our opinionated approach to writing, organizing, and oper
 
 ## Guiding Principles
 
-- **Consistency over preference:** follow the patterns in this playbook even when you disagree; raise a discussion to change the standard instead of diverging silently.
-- **Idempotency always:** every task must be safe to run multiple times without changing the outcome after the first successful run.
-- **Least privilege by default:** use `become` only where strictly necessary; prefer targeted privilege escalation over broad `sudo` access.
-- **Code review everything:** no playbook runs directly against production from a developer machine; all changes go through CI/CD.
+- **Consistency Over Preference:** Follow the patterns in this playbook even when you disagree. Raise a discussion to change the standard instead of diverging silently.
+- **Idempotency Always:** Every task must be safe to run multiple times without changing the outcome after the first successful run.
+- **Least Privilege By Default:** Use `become` only where strictly necessary. Prefer targeted privilege escalation over broad `sudo` access.
+- **Code Review Everything:** No playbook runs directly against production from a developer machine. All changes go through CI/CD.

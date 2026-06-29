@@ -9,7 +9,7 @@ Ansible connects to managed nodes and cloud APIs through a combination of invent
 
 ## SSH Connection
 
-SSH is the default connection method for Linux and macOS hosts. Configure it in `ansible.cfg` and inventory — never pass connection parameters as CLI flags in CI.
+SSH is the default connection method for Linux and macOS hosts. Configure it in `ansible.cfg` and inventory. Never pass connection parameters as CLI flags in CI.
 
 ```ini
 # ansible.cfg
@@ -78,7 +78,7 @@ collections:
 Authenticate using IAM roles attached to the control node (EC2 instance profile or ECS task role). Never hardcode access keys in variables or environment files.
 
 ```yaml
-# Correct — relies on instance profile / environment credentials
+# Correct: relies on instance profile / environment credentials
 - name: List S3 buckets
   amazon.aws.s3_bucket_info:
     region: us-east-1

@@ -54,7 +54,7 @@ Split inventories by environment. Each environment directory contains a `hosts.y
 
 ### `roles/`
 
-All reusable automation lives in roles. Each role follows the standard Ansible role directory structure. Roles are self-contained — they must not rely on variables defined outside their own `defaults/` or `vars/` directories unless those variables are explicitly documented in `meta/main.yml`.
+All reusable automation lives in roles. Each role follows the standard Ansible role directory structure. Roles are self-contained. They must not rely on variables defined outside their own `defaults/` or `vars/` directories unless those variables are explicitly documented in `meta/main.yml`.
 
 ### `playbooks/`
 
@@ -68,7 +68,7 @@ Pin all collection dependencies in `collections/requirements.yml`. Install with:
 ansible-galaxy collection install -r collections/requirements.yml
 ```
 
-## `ansible.cfg`
+## Ansible Configuration
 
 Every repository must include an `ansible.cfg` at the root. At minimum:
 

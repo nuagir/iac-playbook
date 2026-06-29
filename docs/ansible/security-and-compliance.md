@@ -66,7 +66,7 @@ Always set `no_log: true` on tasks that handle secret data to prevent values fro
 - Rotate SSH keys on a schedule. Store private keys in a secrets manager, not on developer machines.
 - Restrict the Ansible control node's SSH access to a dedicated bastion host or VPN.
 
-## `no_log` Usage
+## Logging
 
 Set `no_log: true` on any task that:
 

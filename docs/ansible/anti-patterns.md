@@ -36,7 +36,7 @@ The following patterns are banned in this codebase. Each one introduces fragilit
 # Bad
 db_password: supersecret123
 
-# Good — retrieved at runtime
+# Good: retrieved at runtime
 - name: Read the database password from Vault
   community.hashi_vault.vault_kv2_get:
     path: secret/myapp/database

@@ -19,7 +19,7 @@ Always prefer Ansible built-in or `ansible.builtin.*` modules over shell command
     shell: /bin/bash
     state: present
 
-# Bad — not idempotent, no structured output
+# Bad: not idempotent, no structured output
 - name: Create the application user
   ansible.builtin.command: useradd appuser
 ```
@@ -80,7 +80,7 @@ When no existing module meets a need, write a custom module rather than shelling
 - Be written in Python and use `AnsibleModule` for argument handling.
 - Return a `changed` boolean and a `diff` structure where applicable.
 - Include a `DOCUMENTATION`, `EXAMPLES`, and `RETURN` docstring block.
-- Be idempotent — running the module twice with the same arguments must not alter state on the second run.
+- Be idempotent. Running the module twice with the same arguments must not alter state on the second run.
 
 ```python
 from ansible.module_utils.basic import AnsibleModule

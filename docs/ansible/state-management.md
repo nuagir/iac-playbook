@@ -12,13 +12,13 @@ Unlike Terraform, Ansible does not maintain a state file. Correctness depends on
 Every task must be safe to run multiple times. If the desired state is already present, the task must report `changed: false` and make no modifications.
 
 ```yaml
-# Idempotent — ansible.builtin.package checks installed state
+# Idempotent: ansible.builtin.package checks installed state
 - name: Install the nginx package
   ansible.builtin.package:
     name: nginx
     state: present
 
-# Not idempotent — runs every time regardless of current state
+# Not idempotent: runs every time regardless of current state
 - name: Install nginx
   ansible.builtin.command: apt-get install -y nginx
 ```
