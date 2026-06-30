@@ -1,0 +1,9 @@
+{
+  "label": "Ansible",
+  "position": 3,
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "description": "Opinionated best practices, naming conventions, and structural guidelines for Ansible."
+  }
+}

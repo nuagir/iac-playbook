@@ -17,24 +17,24 @@ Consistent naming reduces cognitive load and makes resources discoverable across
 ## Terraform Identifiers
 
 ```hcl
-# Resource identifiers — <noun> describing what the resource does
+# Resource identifiers: <noun> describing what the resource does
 resource "aws_vpc" "main" { ... }
 resource "aws_subnet" "public" { ... }
 resource "aws_iam_role" "lambda_execution" { ... }
 
-# Data sources — same snake_case, suffix with _data only when the name clashes
+# Data sources: same snake_case, suffix with _data only when the name clashes
 data "aws_ami" "ubuntu" { ... }
 data "aws_caller_identity" "current" { ... }
 
-# Variables — descriptive, no type suffix
+# Variables: descriptive, no type suffix
 variable "environment" { ... }
 variable "vpc_cidr_block" { ... }
 
-# Outputs — match what they represent
+# Outputs: match what they represent
 output "vpc_id" { ... }
 output "private_subnet_ids" { ... }
 
-# Locals — use for derived or composed values
+# Locals: use for derived or composed values
 locals {
   name_prefix = "${var.project}-${var.environment}"
   common_tags = {

@@ -39,6 +39,10 @@ Site URL is `https://iac-playbook.com`. The GitHub repo is `nuagir/iac-playbook`
 
 All documentation lives as MDX files under `docs/`. New docs are automatically picked up by the auto-generated sidebar. Use frontmatter (`title`, `sidebar_position`, `description`) to control ordering and metadata.
 
+## Writing Conventions
+
+- Never use em dashes (—) in documentation. Replace them with commas, periods, or rewrite the sentence as needed.
+
 ## Testing Conventions
 
 There are no automated tests in this project. Run `npm run typecheck` to catch TypeScript errors before committing.
