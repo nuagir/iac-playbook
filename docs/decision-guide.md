@@ -1,14 +1,14 @@
 ---
 sidebar_position: 2
-title: Terraform vs. Ansible Decision Guide
+title: Decision Guide
 description: An opinionated guide to choosing between Terraform and Ansible, and how to combine them, for a given infrastructure task.
 ---
 
-# Terraform vs. Ansible Decision Guide
+# Decision Guide
 
 Terraform and Ansible solve different problems. Reaching for the wrong tool leads to fragile infrastructure, whether that means Ansible playbooks reimplementing a cloud provider's API surface or Terraform provisioners standing in for real configuration management. This guide sets out how to decide which tool owns a given task.
 
-## The Core Distinction
+## Core Distinction
 
 | | Terraform | Ansible |
 |---|---|---|
