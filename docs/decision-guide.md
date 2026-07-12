@@ -14,10 +14,10 @@ Terraform and Ansible solve different problems. Reaching for the wrong tool lead
 |---|---|---|
 | Model | Declarative, state-based | Procedural, task-based (idempotent by convention) |
 | Owns | Provisioning cloud and platform resources | Configuring what runs inside those resources |
-| Tracks | Persistent state file mapping config to real resources | No state file; re-evaluates target state on every run |
+| Tracks | Persistent state file mapping config to real resources | No state file, re-evaluates target state on every run |
 | Best at | Creating, updating, and destroying infrastructure (VPCs, compute instances, databases, IAM, DNS) | Installing packages, managing config files, orchestrating application deploys, running ad hoc operational tasks |
 
-If the task is "does this resource exist with these attributes," reach for Terraform. If the task is "does this machine have this software running with this configuration," reach for Ansible.
+If the task is "does this resource exist with these attributes," use Terraform. If the task is "does this machine have this software running with this configuration," use Ansible.
 
 ## Decision Checklist
 
