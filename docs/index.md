@@ -13,5 +13,6 @@ Each section is self-contained and actionable. Start with the topic most relevan
 
 | Section | Description |
 |---|---|
+| [Decision Guide](./decision-guide) | Choosing between Terraform and Ansible, and how to combine them |
 | [Terraform](./terraform) | Naming conventions, backends, module structure, providers, variables, secrets, workflow, CI/CD pipelines, and lifecycle rules |
 | [Ansible](./ansible) | Project structure, naming conventions, module design, state management, variables, anti-patterns, CI/CD pipelines, and security |
