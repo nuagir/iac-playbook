@@ -47,7 +47,7 @@ postgresql_server_data_dir: /var/lib/postgresql/{{ postgresql_server_version }}/
 
 Organize `group_vars/` to mirror the inventory hierarchy:
 
-```
+```text
 inventories/production/group_vars/
 ├── all.yml          # Applies to every host
 ├── webservers.yml   # Applies to the webservers group

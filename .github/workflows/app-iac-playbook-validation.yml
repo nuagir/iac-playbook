@@ -1,4 +1,4 @@
-name: Test deployment
+name: Validation and test deployment
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   test-deploy:
-    name: Test deployment
+    name: Validation and test deployment
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -24,6 +24,12 @@ jobs:
 
       - name: Run typecheck
         run: npm run typecheck
+
+      - name: Lint markdown
+        run: npm run lint:md
+
+      - name: Check external links
+        run: npm run check:links
 
       - name: Build website
         run: npm run build

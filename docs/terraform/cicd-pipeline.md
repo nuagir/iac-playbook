@@ -27,7 +27,7 @@ Schedule a regular `terraform plan` run (e.g. nightly) against each environment 
 
 Every Terraform change follows a strict plan-then-apply flow. The plan output is saved as an artifact and the apply step uses only that artifact, ensuring what was reviewed is exactly what gets applied.
 
-```
+```text
 Pull Request opened
        │
        ▼
@@ -165,7 +165,7 @@ jobs:
 
 For multiple environments (`dev`, `staging`, `prod`), use a promotion model: changes flow through each environment in sequence with a mandatory approval gate before reaching production.
 
-```
+```text
 main branch push
        │
        ▼

@@ -1,0 +1,12 @@
+{
+  "config": {
+    "default": true,
+    // Prose docs are not wrapped to a fixed column, wrapping is left to the editor.
+    "MD013": false,
+    // Docusaurus pages set the title via frontmatter and still use a body H1, don't treat those as conflicting top-level headings.
+    "MD025": { "front_matter_title": "" },
+    // Compact-style tables (no padding around pipes) are the convention here.
+    "MD060": false
+  },
+  "globs": ["docs/**/*.md", "docs/**/*.mdx"]
+}

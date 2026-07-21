@@ -53,6 +53,10 @@ There are no automated tests in this project. Run `npm run typecheck` to catch T
 
 Always use the structure `<TASK-ID>-short-description` for branch names (e.g. `IAC-01-add-terraform-guide`, `IAC-42-update-navbar`).
 
+## Pull Request Title
+
+Always use the structure `<conventional-commit-subject> (<TASK-ID>)` for PR titles, suffixing the Commit Message format below with the task ID in parentheses (e.g. `feat(auth): add OAuth login (NUA-42)`, `fix(i18n): correct locale detection (NUA-01)`).
+
 ## Pull Request Format
 
 Always use the following structure when creating pull requests. Do not add any extra references, links, or metadata beyond what is shown. Always assign the PR to the authenticated user who is creating it and always use periods at the end of each items in the bullet list:

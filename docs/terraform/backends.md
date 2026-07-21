@@ -63,13 +63,13 @@ terraform {
 
 State file keys follow the same structure as the directory layout:
 
-```
+```text
 <project>/<component>/<environment>/terraform.tfstate
 ```
 
 Examples:
 
-```
+```text
 payments/api/prod/terraform.tfstate
 payments/rds/prod/terraform.tfstate
 platform/networking/staging/terraform.tfstate

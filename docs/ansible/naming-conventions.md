@@ -18,7 +18,7 @@ Consistent naming reduces cognitive load and makes automation discoverable acros
 
 Role names must describe what the role does, not what it targets:
 
-```
+```text
 # Good
 webserver
 postgresql_server
@@ -95,7 +95,7 @@ Avoid overly broad tags like `all` or `setup` that make targeted runs ambiguous.
 
 Playbook filenames describe their scope in kebab-case:
 
-```
+```text
 site.yml
 deploy-webservers.yml
 rotate-tls-certificates.yml

@@ -24,6 +24,23 @@ yarn build
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
+## Validation
+
+Documentation changes are validated in CI before a pull request can merge. Run the same checks locally with:
+
+```bash
+npm run typecheck    # TypeScript check
+npm run lint:md      # Markdown formatting, including structure rules like a single H1 per page
+npm run check:links  # External links in docs/ are reachable
+npm run build        # Also fails on broken internal links
+```
+
+Or run everything at once:
+
+```bash
+npm run validate:docs
+```
+
 ## Deployment
 
 Using SSH:
