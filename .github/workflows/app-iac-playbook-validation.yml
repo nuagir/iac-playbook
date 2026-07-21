@@ -1,4 +1,4 @@
-name: Test deployment and validation
+name: Validation and test deployment
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   test-deploy:
-    name: Test deployment and validation
+    name: Validation and test deployment
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
