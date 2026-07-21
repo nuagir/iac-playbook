@@ -49,7 +49,7 @@ locals {
 
 Cloud resource names follow the pattern:
 
-```
+```text
 <organization>-<project>-<resource-descriptor>-<environment>
 ```
 
@@ -62,7 +62,7 @@ Cloud resource names follow the pattern:
 
 **Examples:**
 
-```
+```text
 acme-payments-api-lb-prod
 acme-payments-rds-primary-staging
 acme-platform-cache-dev

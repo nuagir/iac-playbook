@@ -9,7 +9,7 @@ title: Code Organization
 
 Use a mono-repo structure with a clear separation between live infrastructure and reusable modules:
 
-```
+```text
 infrastructure/
 ├── environments/
 │   ├── dev/

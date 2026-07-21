@@ -99,7 +99,7 @@ jobs:
 
 Pin all Python dependencies:
 
-```
+```text
 ansible-core==2.17.*
 ansible-lint==24.*
 molecule==24.*

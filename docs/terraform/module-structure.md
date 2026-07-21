@@ -19,7 +19,7 @@ Do **not** create a module just to wrap a single resource. The overhead is not w
 
 ## Directory Layout
 
-```
+```text
 modules/
 └── ecs_service/
     ├── main.tf          # Core resources
@@ -153,7 +153,7 @@ Run terraform-docs in CI on every pull request that modifies a module to keep do
 
 ## Testing Modules
 
-Use [Terratest](https://terratest.gruntwork.io/) or [tftest](https://github.com/GoogleCloudPlatform/terraform-cloud-modules-tftest) to write automated tests for modules. At minimum, every module should have:
+Use [Terratest](https://terratest.gruntwork.io/) or [tftest](https://github.com/GoogleCloudPlatform/terraform-python-testing-helper) to write automated tests for modules. At minimum, every module should have:
 
 1. A `examples/basic/` directory with a minimal working configuration.
 2. A test that runs `terraform init`, `plan`, `apply`, and `destroy` against the example.

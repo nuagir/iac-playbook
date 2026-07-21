@@ -9,7 +9,7 @@ A consistent directory layout makes repositories predictable and reduces onboard
 
 ## Repository Layout
 
-```
+```text
 .
 ├── inventories/
 │   ├── production/
